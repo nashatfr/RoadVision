@@ -22,6 +22,18 @@ The system is tailored specifically for **Jordanian streets**, since the underly
 - **Architecture:** YOLO26s (latest YOLO version at the time of development)
 - **Why YOLO26s:** Optimized for edge deployment with fast inference, making it suitable for real-time use inside a moving vehicle.
 
+> **Note:** The trained ONNX model (`best.onnx`) exceeds GitHub's 25 MB file size limit and is therefore hosted on Hugging Face instead of being included directly in this repository:
+> 🔗 https://huggingface.co/nashatfr/RoadVision/tree/main
+
+### Evaluation Results (on Testing Set)
+
+| Metric      | Score |
+|-------------|-------|
+| mAP@50      | 95.8% |
+| mAP@50-95   | 84.6% |
+| Precision   | 97.0% |
+| Recall      | 95.6% |
+
 ---
 
 ## Deployment
@@ -47,7 +59,7 @@ The system was deployed in a car and tested across **3 real-world experiments** 
 | Al-Tafila            | 20 mins  | 11                  | 46       | 45             | 5                  |
 | Amman (Route 1)      | 30 mins  | 16                  | 83       | 83             | 9                  |
 | Amman (Route 2)      | 33 mins  | 18                  | 113      | 109            | 10                 |
-| **Total**            | **83 mins** | 21                | **242**  | **237**        | **24**             |
+| **Total**            | **83 mins** | —                | **242**  | **237**        | **24**             |
 
 **Overall performance:**
 - Recall ≈ 97.9% (237 / 242 signs correctly detected)
@@ -62,9 +74,11 @@ RoadVision/
 ├── training_notebooks/
 │   ├── session_1.ipynb
 │   └── session_2.ipynb
+├── evaluation_notebook.ipynb     # Model evaluation on the testing set
 ├── deployment/
 │   ├── traffic_sign_voice.py     # Main deployment script
-│   ├── best.onnx                 # Trained model (ONNX format)
+│   ├── best.onnx                 # Trained model (ONNX format) — download from Hugging Face
+│   ├── requirements.txt          # Python dependencies
 │   └── voice_messages/           # Arabic voice alert audio files
 ├── videos/
 │   ├── testing_vids/             # Model bounding box evaluation
@@ -74,7 +88,12 @@ RoadVision/
 
 ### Notes
 - **Training Notebooks (2 sessions):** Contain the full model training pipeline across two sessions.
-- **Deployment Code:** `traffic_sign_voice.py` runs the ONNX model and handles voice alert logic (priority queue, timeout, cooldown). It is located in the same folder as `best.onnx` and the voice message files.
+- **Evaluation Notebook:** Contains the model evaluation on the testing set (mAP@50, mAP@50-95, Precision, Recall).
+- **Deployment Code:** `traffic_sign_voice.py` runs the ONNX model and handles voice alert logic (priority queue, timeout, cooldown). It expects `best.onnx` (downloaded from [Hugging Face](https://huggingface.co/nashatfr/RoadVision/tree/main)) to be placed in the same folder as the voice message files.
+- **Requirements:** Install dependencies before running the deployment script:
+  ```bash
+  pip install -r deployment/requirements.txt
+  ```
 - **Camera Input:** During experiments, the **iVCam** app was used to connect the laptop to the camera.
 - **Videos:**
   - *Testing video* — demonstrates model bounding box detection performance.
