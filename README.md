@@ -47,7 +47,7 @@ The system was deployed in a car and tested across **3 real-world experiments** 
 | Al-Tafila            | 20 mins  | 11                  | 46       | 45             | 5                  |
 | Amman (Route 1)      | 30 mins  | 16                  | 83       | 83             | 9                  |
 | Amman (Route 2)      | 33 mins  | 18                  | 113      | 109            | 10                 |
-| **Total**            | **83 mins** | —                | **242**  | **237**        | **24**             |
+| **Total**            | **83 mins** | 21                | **242**  | **237**        | **24**             |
 
 **Overall performance:**
 - Recall ≈ 97.9% (237 / 242 signs correctly detected)
