@@ -6,6 +6,7 @@
 
 The system is tailored specifically for **Jordanian streets**, since the underlying object detection model was trained on a **custom dataset built from Google Street View imagery of Jordan**, manually annotated for object detection. The model was tested live inside a car on real Jordanian roads to evaluate its real-world performance.
 
+This project was my graduation project for my Bachelor’s degree in Artificial Intelligence and Data Science, Class of 2026.
 ---
 
 ## Dataset
